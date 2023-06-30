@@ -1,8 +1,14 @@
 <?php
 date_default_timezone_set('Asia/Taipei');
-$time = date('Y-m-d H:i:s');
 header('Content-type:application/json;charset=utf-8');
 header('Access-Control-Allow-Origin: *');
+$filename = time().'sql_add.json';
+$fp = fopen($filename, 'w');
+fwrite($fp,json_encode([
+    $_POST
+],JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT));
+fclose($fp);
+
 if (
     empty($_POST['name']) ||
     empty($_POST['data'])
@@ -15,21 +21,7 @@ if (
     echo $response;
     die();
 }
-// 若讀取失敗
-/*if (
-    empty($_POST['name'])
-) {
-    $json = array(
-        "ok" => false,
-        "message" => "Please input content"
-    );
-
-    $response = json_encode($json);
-    echo $response;
-    die();
-}*/
-
-/*function conn($dbname)
+function conn($dbname)
 {
     try
     {
@@ -45,12 +37,13 @@ if (
 }
 $var = require "config.php";
 $dbname = $var['dbname'];
-
 $pdo = conn($dbname);
+$db_data = ['',$_POST['name'],$_POST['data']];
+$sql = "INSERT INTO `". $var['db'] ."` VALUES(?,?,?)";
 $sth = $pdo->prepare($sql);
 try
 {
-    if ($sth->execute($var['field']))
+    if ($sth->execute($db_data))
     {
 
     }
@@ -64,9 +57,3 @@ catch (PDOException $e)
     echo 'error';
 }
 unset($pdo);
-/*$json = array(
-    "comments" => $comments
-);
-$response = json_encode($json);
-header('Content-type：application/json;charset=utf-8');*/
-/*echo $response;*/

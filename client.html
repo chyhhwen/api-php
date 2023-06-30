@@ -3,7 +3,7 @@
     data = () =>
     {
         var request = new XMLHttpRequest();
-        request.open('GET', './api/sql_data.php', true);
+        request.open('GET', '/api-php/api/sql_data.php', true);
         request.onload = () => {
             if (this.status >= 200 && this.status < 400)
             {
@@ -22,7 +22,7 @@
     add = (name,data) =>
     {
         var request = new XMLHttpRequest();
-        request.open('POST', './api/sql_add.php', true);
+        request.open('POST', '/api-php/api/sql_add.php', true);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         request.send("name=" + name + "&" + "data=" + data);
     }

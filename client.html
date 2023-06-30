@@ -1,0 +1,23 @@
+<body>
+<script>
+    // 發出 Request
+    var request = new XMLHttpRequest();
+    request.open('GET', './api/sql_data.php', true);
+
+    request.onload = function() {
+        if (this.status >= 200 && this.status < 400) {
+            var resp = this.response;
+            var json = JSON.parse(resp)
+            var comments = json.comments
+
+            for (var i = 0; i < comments.length; i++) {
+                var comment = comments[i];
+                console.log(comment);
+            }
+        }
+    };
+    request.send();
+
+</script>
+123
+</body>

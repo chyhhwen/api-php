@@ -3,11 +3,11 @@ date_default_timezone_set('Asia/Taipei');
 header('Content-type:application/json;charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 $filename = time().'sql_add.json';
-$fp = fopen($filename, 'w');
-fwrite($fp,json_encode([
+/*$fp = fopen($filename, 'w');
+  write($fp,json_encode([
     $_POST
 ],JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT));
-fclose($fp);
+fclose($fp);*/
 
 if (
     empty($_POST['name']) ||
@@ -43,17 +43,13 @@ $sql = "INSERT INTO `". $var['db'] ."` VALUES(?,?,?)";
 $sth = $pdo->prepare($sql);
 try
 {
-    if ($sth->execute($db_data))
+    if (!($sth->execute($db_data)))
     {
-
-    }
-    else
-    {
-        ref([0,'error.php']);
+        die();
     }
 }
 catch (PDOException $e)
 {
-    echo 'error';
+    die();
 }
 unset($pdo);

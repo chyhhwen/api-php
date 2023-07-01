@@ -1,0 +1,7 @@
+[
+    {
+        "name": "",
+        "data": "() =>\n    {\n        var request = new XMLHttpRequest();\n        request.open('GET', '\/api-php\/api\/sql_data.php', true);\n        request.onload = () => {\n            if (this.status >= 200 ",
+        "this_status_<_400)\n____________{\n________________var_resp_": " this.response;\n                var json = JSON.parse(resp)\n                var comments = json.comments\n                for (var i = 0; i < comments.length; i  )\n                {\n                    var comment = comments[i];\n                    console.log(comment);\n                }\n            }\n        };\n        request.send();\n    }"
+    }
+]

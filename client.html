@@ -33,10 +33,18 @@
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         request.send("id=" + id);
     }
+    upd = (id,name,data) =>
+    {
+        var request = new XMLHttpRequest();
+        request.open('POST', '/api-php/api/sql_update.php', true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        request.send("id=" + id + "&" + "name=" + name + "&" + "data=" + data);
+    }
     window.onload = () =>
     {
         //add("123.png","123456");
         //del("2");
+        //upd("4","1234.png","1234");
     }
 </script>
 123

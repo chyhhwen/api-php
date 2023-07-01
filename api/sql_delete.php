@@ -38,7 +38,6 @@ $var = require "config.php";
 $dbname = $var['dbname'];
 $pdo = conn($dbname);
 $sql = "DELETE FROM `" . $var['db'] ."` WHERE `id` = \"". $_POST['id'] ."\"";
-echo $sql;
 $sth = $pdo->prepare($sql);
 try
 {
